@@ -24,8 +24,8 @@ export default function App() {
 
           <View className="relative mt-5">
             <Text className="text-3xl text-white font-bold text-center">
-              Discover Endless Possibilities with {' '}
-              <Text className="text-secondary-200">Aora</Text>
+              Descubre lo mejor en Muebles con {' '}
+              <Text className="text-secondary-200">ROPY</Text>
             </Text>
             <Image
               source={images.path}
@@ -34,10 +34,9 @@ export default function App() {
             ></Image>
           </View>
           <Text className="text-sm font-pregular text-gray-100 mt-7 text-center">
-            Where creativity meets innovation: embark on a journary to limitless exploration with Aora
             </Text>
             <CustomButton
-              title="Continue with Email"
+              title="Comienza en ROPY"
               handlePress={() => router.push('/sing-in')}
               containerStyles="w-full mt-7"
             />

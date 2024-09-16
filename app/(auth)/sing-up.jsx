@@ -5,6 +5,7 @@ import { images } from '../../constants'
 import FormField from '../../components/FormField'
 import CustomButton from '../../components/CustomButton'
 import { Link } from 'expo-router'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const singUp = () => {
   const [form, setForm] = useState({
@@ -15,9 +16,18 @@ const singUp = () => {
 
   const [isSubmitting, setIsSubmitting] = useState (false)
 
-  const submit = () =>{
-  
-  }
+  const submit = async () => {
+
+    localStorage.setItem('user', JSON.stringify(form));
+    try {
+      
+      await AsyncStorage.setItem('user', JSON.stringify(form));
+      
+    } catch (e) {
+      
+      console.error(e);
+    }
+  };
 
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -26,9 +36,9 @@ const singUp = () => {
           <Image 
             source={images.logo}
             resizeMode='contain'
-            className="w-[115px] h-[35px]"
+            className="w-[115px] h-[80px]"
           />
-          <Text className="text-2xl text-white text-semibold mt-10 font-psemibold">Sign up to Aora</Text>
+          <Text className="text-2xl text-white text-semibold mt-10 font-psemibold">Registrate</Text>
 
           <FormField
             title="Username"
@@ -46,14 +56,14 @@ const singUp = () => {
           />
 
           <FormField
-            title="Password"
+            title="Contraseña"
             value={form.password}
             handleChangeText={(e) => setForm({...form,password: e})}
             otherStyles="mt-7"
           />
 
           <CustomButton
-            title="Sing in"
+            title="Registrarte"
             handlePress={submit}
             containerStyles="mt-7"
             isLoading={isSubmitting}
@@ -61,9 +71,9 @@ const singUp = () => {
 
           <View className="justify-center pt-5 flex-row gap-2">
             <Text className="text-lg text-gray-100 font-pregular">
-              Have an account already?
+               ¿Ya tienes una cuenta?
             </Text>
-            <Link href="/sing-in" className='text-lg font-psemibold text-secondary'>Sign in</Link>
+            <Link href="/sing-in" className='text-lg font-psemibold text-secondary'>Iniciar Sesión</Link>
           </View>
         </View>
       </ScrollView>
